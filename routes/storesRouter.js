@@ -13,7 +13,7 @@ storesRouter.route('/')
 
         axios.get(req.body.url + "/products.json").then(resp => {
 
-
+             
             var products = resp.data.products
             var vendors = []
             products.forEach((data, index) => {
@@ -87,6 +87,16 @@ storesRouter.route('/')
 
             });
 
+        })
+        .catch(err => {
+            if (err.response) {
+             
+              console.log(err.response)
+            } else if (err.request) {
+                console.log(err.request)
+            } else {
+              // anything else
+            }
         });
 
     })
