@@ -49,7 +49,7 @@ storesRouter.route('/')
 
             var vendorAll = {
                 "VendorA": vendors,
-                time: Date.now().toISOString()
+                time: Date.now()
 
             }
 
