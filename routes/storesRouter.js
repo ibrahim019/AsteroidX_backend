@@ -49,7 +49,7 @@ storesRouter.route('/')
 
             var vendorAll = {
                 "VendorA": vendors,
-                time: Date.now()
+                time: Date.now().toISOString()
 
             }
 
@@ -119,6 +119,22 @@ storesRouter.route('/dashboard')
             
             res.json(storesResult);
         });
+
+    });
+
+    storesRouter.route('/delete')
+    .post(function (req, res, next) {
+        var storeProjection = {
+
+            url: false,
+            _id: false,
+            __v: false
+        };
+        Stores.findOneAndDelete({  url: req.body.url }, function (err) {
+            if(err) console.log(err);
+            console.log("Successful deletion");
+            res.json(200);
+          });
 
     });
 
