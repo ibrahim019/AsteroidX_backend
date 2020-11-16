@@ -135,16 +135,20 @@ storesRouter.route('/dashboard')
 
     storesRouter.route('/delete')
     .post(function (req, res, next) {
+        console.log(req.body)
         var storeProjection = {
 
             url: false,
             _id: false,
             __v: false
         };
-        Stores.findOneAndDelete({  url: req.body.url }, function (err) {
-            if(err) console.log(err);
-            console.log("Successful deletion");
-            res.json(200);
+        Stores.findOneAndDelete({  url: req.body.url }, function (err, docs) {
+            if(err){ console.log(err);}
+            else{
+                console.log("Deleted entry : ", docs); 
+                res.json(200);
+            }
+           
           });
 
     });
